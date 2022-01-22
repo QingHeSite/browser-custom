@@ -7,7 +7,6 @@ import {useStorage} from '@vueuse/core'
 import Draggable from "vuedraggable";
 import {site} from "../scripts/siteMap";
 
-const showList = reactive(site['devSite'])
 const word = ref('')
 const engineIndex = ref(0)
 const googleIcon = ref('')
@@ -44,12 +43,16 @@ const switchEngine = (index) => {
 
 }
 
+/*站点列表---start*/
+const showList = reactive(site['devSite'])
+const localSiteList= useStorage('showSiteList', showList)
 const draggableEnd = () => {
-  console.log(showList)
+  console.log(localSiteList)
 }
 const toSite = (item) => {
   window.open(item.url, '_blank')
 }
+/*站点列表---end*/
 onMounted(() => {
   /*从本地获取配置 引擎index*/
   engineIndex.value = localEngineIndex.value
@@ -84,7 +87,7 @@ onMounted(() => {
 
     <!--    列表-----start-->
     <div :class="$style.showSiteWrapper" @dragover.prevent>
-      <Draggable :disabled="false" :class="$style.siteWrapper" :list="showList" @end="draggableEnd">
+      <Draggable :disabled="false" :class="$style.siteWrapper" :list="localSiteList" @end="draggableEnd">
         <template #item="{ element = {}, index }">
           <div :class="$style.siteItem" @click="toSite(element)">
             <span :class="$style.siteIcon"></span>
