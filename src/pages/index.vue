@@ -3,9 +3,11 @@
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
 import {Input as aInput, InputSearch} from 'ant-design-vue'
 import {ref, reactive, onMounted, getCurrentInstance} from "vue";
-import { useStorage } from '@vueuse/core'
+import {useStorage} from '@vueuse/core'
+import Draggable from "vuedraggable";
+import {site} from "../scripts/siteMap";
 
-
+const showList = reactive(site['devSite'])
 const word = ref('')
 const engineIndex = ref(0)
 const googleIcon = ref('')
@@ -41,6 +43,13 @@ const switchEngine = (index) => {
   showEngineList.value = false
 
 }
+
+const draggableEnd = () => {
+  console.log(showList)
+}
+const toSite = (item) => {
+  window.open(item.url, '_blank')
+}
 onMounted(() => {
   /*从本地获取配置 引擎index*/
   engineIndex.value = localEngineIndex.value
@@ -52,7 +61,7 @@ onMounted(() => {
 
 <template>
   <div :class="$style.search_ctx">
-<!--    输入框-------------start-->
+    <!--    输入框-------------start-->
     <div :class="$style.input_box">
       <div :class="$style.icon_box" @click="showEngineList = !showEngineList">
         <img width="40" height="40" :src="searchEngineList[engineIndex].iconSrc" alt="">
@@ -72,6 +81,19 @@ onMounted(() => {
 
     </div>
     <!--    输入框-------------end-->
+
+    <!--    列表-----start-->
+    <div :class="$style.showSiteWrapper" @dragover.prevent>
+      <Draggable :disabled="false" :class="$style.siteWrapper" :list="showList" @end="draggableEnd">
+        <template #item="{ element = {}, index }">
+          <div :class="$style.siteItem" @click="toSite(element)">
+            <span :class="$style.siteIcon"></span>
+            <p :class="$style.siteTitle">{{ element.title}}</p>
+          </div>
+        </template>
+      </Draggable>
+    </div>
+    <!--    列表-----end-->
   </div>
 </template>
 
