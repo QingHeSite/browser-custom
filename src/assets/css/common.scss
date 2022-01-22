@@ -1,0 +1,60 @@
+* {
+  margin: 0;
+  padding: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html {
+  -webkit-text-size-adjust: none; /*处理webkit内核浏览器默认最小字体为12px的问题.(在新版chrome浏览器里已废除次方法，所以无效)*/
+  //height:100%;
+  //overflow:auto;
+  //margin: 0;
+}
+
+body {
+  padding: 0;
+  background-color: #fff;
+  font-size: 0.875em;
+  line-height: 1.42858;
+  font-family: "SourceHanSansSC-Regular", "Microsoft Yahei", "微软雅黑", sans-serif;
+}
+input,textarea{
+  font-family: "SourceHanSansSC-Regular", "Microsoft Yahei", "微软雅黑", sans-serif;
+}
+h1, h2, h3, h4, h5, h6, form, div, p, i, img, ul, li, ol, table, tr, td, th, fieldset, figure, label, legend, button, input {
+  outline: none;
+  margin: 0;
+  padding: 0;
+}
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  width: 100vw;
+  height: 100vh;
+  //background: url("../images/page_bgc_1.png") center center no-repeat;
+  background: url("https://dm2305files.storage.live.com/y4pllhkMfcmGTNeYKEYeVt5Pb-q7IK9bsWUpOYv72qf_S1Uzky-IjOZ8GrFRP2rX6nXomIJwn8jwdbYiUoySINJHNSn69fIruXMXHuFu_gLmR92__Nlrb5s8GTOGXi8F8qp3NDSsdz9pfpoibCZxxjGOM5FfQ2V4uPSSzxwQnx2tV2mEPSwWmD3mHe9A9uoGuHE/page_bgc_1.png?psid=1&width=1920&height=1080") center center no-repeat;
+  background-size: cover;
+  .ant-input{
+    transition: initial;
+  }
+  .ant-input:focus, .ant-input:hover{
+    box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+    border-color: rgba(223,225,229,0);
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
